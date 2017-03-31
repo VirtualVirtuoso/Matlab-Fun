@@ -4,6 +4,9 @@ function result = closestmagicnum(n)
   squaredString = num2str(squared);
   digits = [];
   
+  currentNum = n / 2;
+  
+  while(currentNum^2 <= n)
   
   for i=1:numel(squaredString)
     digits = [digits, str2num(squaredString(i))];

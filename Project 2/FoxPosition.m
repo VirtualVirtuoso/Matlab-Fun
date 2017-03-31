@@ -5,11 +5,11 @@ function [fox] = FoxPosition(fox, rabbit, scene, config)
   
   if(!LineOfSight(fox.Position, rabbit.Position, scene))
     % Rabbit is not visible, run to next corner
-    if(fox.Position(2) < scene.WarehouseNW(2)) % Visited? NW Corner
-      traverseTowards = scene.WarehouseNW;
+    if(fox.Position(2) < scene.WAREHOUSE_NW(2)) % Visited? NW Corner
+      traverseTowards = scene.WAREHOUSE_NW;
     endif
-    if(fox.Position(2) < scene.WarehouseSW(2)) % Cascade, SW corner
-      traverseTowards = scene.WarehouseSW;
+    if(fox.Position(2) < scene.WAREHOUSE_SW(2)) % Cascade, SW corner
+      traverseTowards = scene.WAREHOUSE_SW;
     endif  
   endif
  
@@ -19,11 +19,11 @@ function [fox] = FoxPosition(fox, rabbit, scene, config)
   distanceEuclid = sqrt(differenceX^2 + differenceY^2);
   
   % Determine exponential decay factors
-  if(config.SpeedDecay)
-    decayedSpeed = fox.Speed * exp(-fox.SpeedDecay * fox.Distance);
-    distanceStep = decayedSpeed * config.TimeIncrement;
+  if(config.SPEED_DECAY)
+    decayedSpeed = fox.Speed * exp(-fox.SPEED_DECAY * fox.Distance);
+    distanceStep = decayedSpeed * config.TIME_INCREMENT;
   else
-    distanceStep = fox.Speed * config.TimeIncrement;
+    distanceStep = fox.Speed * config.TIME_INCREMENT;
   endif
   
   percentTravelled = distanceStep / distanceEuclid; 

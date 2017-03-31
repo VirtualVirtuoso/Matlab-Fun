@@ -1,15 +1,15 @@
 function [rabbit] = RabbitPosition(rabbit, scene, config)
   
   % Determine the direct distance the rabbit will travel
-  differenceX = scene.Burrow(1) - scene.RabbitStart(1);
-  differenceY = scene.Burrow(2) - scene.RabbitStart(2);
+  differenceX = scene.BURROW(1) - scene.RABBIT_START(1);
+  differenceY = scene.BURROW(2) - scene.RABBIT_START(2);
   distanceEuclid = sqrt(differenceX^2 + differenceY^2);
    
-  if(config.SpeedDecay)
-    decayedSpeed = rabbit.Speed * exp(-rabbit.SpeedDecay * rabbit.Distance);
-    distanceStep = decayedSpeed * config.TimeIncrement;
+  if(config.SPEED_DECAY)
+    decayedSpeed = rabbit.Speed * exp(-rabbit.SPEED_DECAY * rabbit.Distance);
+    distanceStep = decayedSpeed * config.TIME_INCREMENT;
   else
-    distanceStep = rabbit.Speed * config.TimeIncrement;
+    distanceStep = rabbit.Speed * config.TIME_INCREMENT;
   endif
   
   percentTravelled = distanceStep / distanceEuclid; 
